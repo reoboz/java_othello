@@ -23,9 +23,15 @@ class InputTest {
 	}
 	
 	@Test
+	void getNumericPositionConvertsA1to00() {
+		int[] numericPosition = input.getNumericPosition("A1");
+		assertTrue(Arrays.equals(numericPosition,new int[] {0,0}));
+	}
+	
+	
+	@Test
 	void getYPositionAnswersSmallerNumber() {
 		int y = input.getYPosition('6');
-		System.out.println(y);
 		assertTrue(y == 5);
 	}
 

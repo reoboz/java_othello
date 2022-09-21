@@ -22,6 +22,7 @@ public class Input {
 		return new int[] {x,y};
 	}
 	public int getXPosition(char pos) {
+		pos = Character.toUpperCase(pos);
 		int x = -1;
 		switch(pos) {
 		case 'A':
@@ -54,9 +55,20 @@ public class Input {
 	}
 	public int getYPosition(char pos) {
 		int y = Character.getNumericValue(pos-1);
-		if (y >= Board.BOARD_SIZE || 0 >= y) {
+		if (y >= Board.BOARD_SIZE || 0 > y) {
 			y = -1;
 		}
 		return y;
+	}
+	
+	public boolean playAnotherGame() {
+		while(true) {
+			char answer = s.next().charAt(0);
+			if (answer == 'Y' || answer == 'y') {
+				return true;
+			} else if (answer == 'N' || answer == 'n') {
+				return false;
+			}
+		}
 	}
 }
