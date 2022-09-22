@@ -42,11 +42,11 @@ public class Board {
 	
 	public boolean putPiece(int[] position) {
 		if (validateSpecifiedPosition(position)) {
-			setSquareList(position, Game.playerTurn);
+			setSquareList(position);
 			reverseSurroundedSquare(position);
 			return true;
 		} else {
-			System.out.println("値が不正です");
+			System.out.println("そこには置けません");
 			return false;
 		}
 	}
@@ -54,7 +54,7 @@ public class Board {
 	public boolean validateSpecifiedPosition(int[] position) {
 		int x = position[0];
 		int y = position[1];
-		if (x == -1 || y == -1) {
+		if (!(isInRange(x,y))){
 			return false;
 		}
 		if (squareList[y][x] != 0) {
@@ -84,16 +84,19 @@ public class Board {
 		if (!(isInRange(x,y))) {
 			return false;
 		}
-		if (squareList[y][x] == Game.playerTurn) {
+		if (squareList[y][x] == 0) {
 			return false;
 		}
-		if (squareList[y][x] == 0) {
+		if (squareList[y][x] == Game.playerTurn) {
 			return false;
 		}
 		while (true) {
 			x += directionX;
 			y += directionY;
 			if (!(isInRange(x,y))){
+				return false;
+			}
+			if (squareList[y][x] == 0) {
 				return false;
 			}
 			if (squareList[y][x] == Game.playerTurn) {
@@ -103,12 +106,10 @@ public class Board {
 	}
 	
 	public void reverseSurroundedSquare(int[] position) {
-		int x = position[0];
-		int y = position[1];
 		for (int i = -1; i < 2; i++) {
 			for (int j = -1; j < 2; j++) {
 				ArrayList<int[]> checkedPositionList = new ArrayList<>();
-				checkedPositionList.add(new int[] {x,y});
+				checkedPositionList.add(position);
 				reverseSpecifiedDirection(checkedPositionList, i,j);
 			}
 		}
@@ -134,7 +135,9 @@ public class Board {
 	public void reversePieces(ArrayList<int[]> checkedPositionList) {
 		checkedPositionList.remove(0);
 		checkedPositionList.forEach(position -> {
-			squareList[position[1]][position[0]] = Game.playerTurn;
+			int x = position[0];
+			int y = position[1];
+			squareList[y][x] = Game.playerTurn;
 		});
 	}
 	
@@ -178,18 +181,18 @@ public class Board {
 	}
 	
 	public boolean isInRange(int x, int y) {
-		if (y >= Board.BOARD_SIZE || 0 >= y
-				|| x >= Board.BOARD_SIZE || 0 >= x) {
+		if (y >= Board.BOARD_SIZE || 0 > y
+				|| x >= Board.BOARD_SIZE || 0 > x) {
 			return false;
 		} else {
 			return true;
 		}
 	}
 	
-	public void setSquareList(int[] position, int playerTurn) {
+	public void setSquareList(int[] position) {
 		int x = position[0];
 		int y = position[1];
-		squareList[y][x] = playerTurn;
+		squareList[y][x] = Game.playerTurn;
 	}
 	
 	public int[][] getSquareList(){

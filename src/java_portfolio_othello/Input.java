@@ -62,11 +62,12 @@ public class Input {
 	}
 	
 	public boolean playAnotherGame() {
+		System.out.println("Play again?(Y/N) >>");
 		while(true) {
-			char answer = s.next().charAt(0);
-			if (answer == 'Y' || answer == 'y') {
+			char answer = Character.toUpperCase(s.next().charAt(0));
+			if (answer == 'Y') {
 				return true;
-			} else if (answer == 'N' || answer == 'n') {
+			} else if (answer == 'N') {
 				return false;
 			}
 		}
