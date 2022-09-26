@@ -13,7 +13,6 @@ class FindPlaceablePositionTest {
 	
 	@BeforeEach
 	void setup() {
-		board = new Board();
 		
 		Game.playerTurn = 2;
 
@@ -21,9 +20,26 @@ class FindPlaceablePositionTest {
 
 	/* findPlaceablePositionTest */
 	@Test
-	void returnsThreeOnDefaultBoard() {
+	void returnsFourOnDefaultBoard() {
+		board = new Board();
 		checkedPositionList = board.findPlaceablePosition();
 		assertTrue(checkedPositionList.size() == 4);
 	}
 
+	@Test
+	void returnsZeroOnGivenBoard() {
+		int[][] situation_board = {
+				{0,0,0,0,0,0,0,0},
+				{0,2,2,2,0,0,0,0},
+				{0,2,1,2,0,0,0,0},
+				{0,2,2,2,0,0,0,0},
+				{0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0}
+				};
+		board = new Board(situation_board);
+		checkedPositionList = board.findPlaceablePosition();
+		assertTrue(checkedPositionList.size() == 0);
+	}
 }

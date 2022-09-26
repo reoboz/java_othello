@@ -44,13 +44,12 @@ class ValidateSpecifiedPositionTest {
 	
 	/* G5に置けちゃってなんで？と思って書いたテスト。
 	 * 原因はcheckSpecifiedDirectionで左上にある相手のコマを見つけた後、
-	 * 何も置かれていないマスを飛ばしてその次の自分のコマを見て挟めるというロジックになっていた*/
+	 * 何も置かれていないマスを飛ばしてその次の自分のコマを見て挟めるというロジックになっていた */
 	@Test
-	void putPieceWithoutError_2() {
+	void putPieceReturnsFalseOnInappropriatePosition() {
 		board = new Board(situationBoard_2);
 		assertFalse(board.validateSpecifiedPosition(new int[] {6,4}));
 	}
-
 }
 
 
