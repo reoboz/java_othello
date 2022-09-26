@@ -46,8 +46,9 @@ main(){
 - CPU = 2
 - static playerTurn
 
-Game(){
-    ゲーム進行に必要なインスタンスを生成
+```
+Game(){  
+    ゲーム進行に必要なインスタンスを生成  
 }
 
 play(){
@@ -78,11 +79,12 @@ getMatchResult(){
 checkRestart(){
     もう一度プレイするかの入力を受け付けるメソッドを呼び出す
 }
+```
 
 ## Board クラス
 - BOARD_SIZE = 8
 - squareList = new int[8][8]
-
+```
 Board(){
     ゲーム開始時のオセロ盤を生成
 }
@@ -164,11 +166,12 @@ void setSquareList(int[] position){
 int[][] getSquareList(){
     オセロ盤を返す
 }
+```
 
 ## Input クラス
 - EXPECTED DIGIT = 2;
 - s = new Scanner(System.in);
-
+```
 int[] receivePosition(){
     コマを置く位置の入力を受け取る
 }
@@ -191,10 +194,11 @@ int getYPosition(char pos){
 boolean playAnotherGame(){
     もう一度プレイするかどうかの入力を受け取る
 }
+```
 
 ## Computer クラス
 - board
-
+```
 Computer(){
     使用しているオセロ盤を受け取る
 }
@@ -203,9 +207,11 @@ putOnRandomPlace(){
     配置可能なマスを配列で受け取り、そのサイズが０ならターンを終える
     サイズが１以上であればマスをランダムで選び２秒待った後にコマを置く
 }
+```
 
 ## Misc クラス
+```
 static <E> E getLastElement(List<E> list){
     渡したリストの最後の要素を返す
 }
-
+```
